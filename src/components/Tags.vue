@@ -3,14 +3,20 @@ const props = defineProps<{
   tags: string[]
 }>()
 
-const emit = defineEmits(["on-tag-click"]);
+const emit = defineEmits<{
+  (e: "on-tag-click", tag: string): void
+}>();
+
+const deleteTag = (tag: string) => {
+  emit("on-tag-click", tag)
+}
 </script>
 
 <template>
   <ul>
-    <li v-for="tag in tags.values()" :key="tag">
+    <li v-for="tag in props.tags" :key="tag">
       {{tag}}
-      <button @click="emit('on-tag-click', tag)">x</button>
+      <button @click="deleteTag(tag)">x</button>
     </li>
   </ul>
 

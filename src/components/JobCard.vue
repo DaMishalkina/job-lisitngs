@@ -5,7 +5,13 @@ const props = defineProps<{
   job: Job & {tags: string[]}
 }>();
 
-const emit = defineEmits(["on-tag-select"])
+const emit = defineEmits<{
+  (e: "on-tag-select", tag: string): void
+}>()
+
+const selectTag = (tag: string) => {
+  emit("on-tag-select", tag);
+}
 
 
 </script>
@@ -32,7 +38,7 @@ const emit = defineEmits(["on-tag-select"])
     </section>
     <section>
       <button
-          @click="emit('on-tag-select', tag)"
+          @click="selectTag(tag)"
           v-for="tag in props.job.tags">
         {{tag}}
       </button>

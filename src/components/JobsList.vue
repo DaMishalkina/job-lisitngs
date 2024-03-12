@@ -19,7 +19,7 @@ const modifiedJobs = computed(() => {
     }
   })
 })
-const selectedTags = ref(new Set());
+const selectedTags = ref(new Set<string>());
 const filteredJobs =  computed(() => {
   if(selectedTags.value.size === 0){
     return modifiedJobs.value;
@@ -62,7 +62,7 @@ watch(() => selectedTags.value.size, () => {
 
 <template>
   <section v-if="selectedTags?.size > 0">
-    <Tags :tags="selectedTags" @on-tag-click="onSelect" />
+    <Tags :tags="[...selectedTags.values()]" @on-tag-click="onSelect" />
     <button @click="onClear()">Clear</button>
   </section>
   <section v-if="filteredJobs?.length">
