@@ -3,7 +3,7 @@ import {Job} from "@/types";
 import JobCard from "@/components/JobCard.vue";
 import {computed, onMounted, ref, watch} from "vue";
 import {getTags} from "@/utils/getTags";
-import Tags from "@/components/Tags.vue";
+import TagsList from "@/components/TagsList.vue";
 
 
 const props = defineProps<{
@@ -62,12 +62,12 @@ watch(() => selectedTags.value.size, () => {
 
 <template>
   <section v-if="selectedTags?.size > 0">
-    <Tags :tags="[...selectedTags.values()]" @on-tag-click="onSelect" />
+    <tags-list :tags="[...selectedTags.values()]" @on-tag-click="onSelect" />
     <button @click="onClear()">Clear</button>
   </section>
   <section v-if="filteredJobs?.length">
     <ul>
-      <JobCard v-for="job in filteredJobs" :key="job.id" :job="job" @on-tag-select="onSelect" />
+      <job-card v-for="job in filteredJobs" :key="job.id" :job="job" @on-tag-select="onSelect" />
     </ul>
   </section>
 

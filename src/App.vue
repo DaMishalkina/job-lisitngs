@@ -26,7 +26,7 @@ const jobs = ref([] as Job[]);
 </script>
 
 <template>
-    <JobsList :jobs="jobs" />
+    <jobs-list :jobs="jobs" />
 </template>
 
 <style scoped>
