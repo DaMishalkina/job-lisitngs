@@ -26,9 +26,16 @@ const jobs = ref([] as Job[]);
 </script>
 
 <template>
+  <main class="main">
     <jobs-list :jobs="jobs" />
+  </main>
+
 </template>
 
-<style scoped>
+<style lang="scss">
+@import "assets/global.scss";
+.main {
+  background: $bg;
+}
 
 </style>

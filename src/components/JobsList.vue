@@ -85,7 +85,11 @@ onMounted(() => {
     selectedTags.value.add(filter)
   })
 
-  currentPage.value = Number(windowData?.page);
+  if(windowData?.page){
+    currentPage.value = Number(windowData?.page);
+  }
+
+
 
 
 })
@@ -118,6 +122,7 @@ watch(() => pageStateOptions.value, (value) => {
 
   window.history.pushState({}, '', searchURL);
 })
+
 </script>
 
 <template>
@@ -143,8 +148,15 @@ watch(() => pageStateOptions.value, (value) => {
     <button @click="onClear()">Clear</button>
   </section>
   <section v-if="paginatedJobs?.length">
-    <ul>
+    <ul class="jobs-list">
       <job-card v-for="job in paginatedJobs" :key="job.id" :job="job" @on-tag-select="onSelect" />
     </ul>
   </section>
 </template>
+
+<style lang="scss">
+.jobs-list {
+  display: grid;
+  gap: 36px;
+}
+</style>
